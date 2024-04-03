@@ -1,0 +1,62 @@
+{% extends 'stock/base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+
+	{% if messages %}
+		{% for message in messages %}
+		 	<div class="text-center mt-3">{{ message }}</div>
+		{% endfor %}
+	{% endif %}
+
+	
+	<div class="container mt-5">
+		<h1 class="title mb-5">{{ title }}</h1>
+		<form class="mt-5" method="post" action="">
+			{% csrf_token %}
+			<div class="row">
+				{% for field in form %}
+				<div class="col-sm-5">
+					{% bootstrap_field field %}
+				</div>
+				{% endfor %}
+				<div class="col-sm-3">
+					<input class="btn btn-success" type="submit" value="Search">
+				</div>
+			</div> 
+		</form>
+
+		<table class="m-5">
+			<thead>
+				<th>#</th>
+				<th>Item</th>
+				<th>Category</th>
+				<th>Quantity</th>
+				<th>Reoder Level</th>
+				<th>Timestamp</th>
+				<th>Last Updated</th>
+				<th>Delete</th>
+			</thead>
+			<tbody>
+				{% for instance in queryset %}
+				<tr>
+					<td>{{forloop.counter}}</td>
+					<td><a href="{% url 'stock:update' id=instance.id %}">{{instance.item_name}}</a></td>
+					<td>{{instance.category}}</td>
+					<td><a href="{% url 'stock:detail' id=instance.id %}">
+						{% if instance.quantity <= instance.reorder_level %}
+						<div style="background-color: tomato;">{{instance.quantity}}</div>
+						{% else %}{{instance.quantity}}
+						{% endif %}
+					</a></td>
+					<td><a href="{% url 'stock:reorder' instance.id %}">{{instance.reorder_level}}</a></td>
+					<td>{{instance.timestamp}}</td>
+					<td>{{instance.last_updated}}</td>
+					<td><a href="{% url 'stock:delete' id=instance.id %}"><i class="fas fa-trash" style="color: red;"></i></a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	
+
+{% endblock %}

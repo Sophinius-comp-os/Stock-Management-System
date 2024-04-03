@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(221, 255, 255);
+}
+.nav-item{
+  font-size: 22px;
+  margin: 20px 20px 10px 20px;
+}
+
+.title, .home{
+  font-family: helvetica;
+  font-weight: bold;
+  font-size: 30px;
+  color: #2e6da4;
+  text-align: center;
+}
+
+.form{
+  text-align: left;
+}
+
+.home{
+  font-size: 40px;
+  text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  th {
+    background-color: #70a3d0;
+    text-align: left;
+    padding: 10px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+  }
+  
+  td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f5f5f5;
+  }
+  
+  td a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  td .low-quantity {
+    background-color: tomato;
+    color: white;
+  }
+  
+  td .delete-icon {
+    color: red;
+  }
+  
